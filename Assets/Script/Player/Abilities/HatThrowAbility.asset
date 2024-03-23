@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec3d3a4cd1ed5942bff6313534742d0, type: 3}
+  m_Name: HatThrowAbility
+  m_EditorClassIdentifier: 
+  unlocked: 1
+  hatLibrary: {fileID: 7108339969198208228, guid: f3cd537bc6a2b834e9be6d0495ec5580, type: 3}
+  hatlessLibrary: {fileID: 7108339969198208228, guid: 9d882bdc11e2e6843bd04c17adb1e73b, type: 3}
+  HatThrowFriction: 7
+  HatThrowDrag: 0.05
+  maxFallSpeed: -30
+  maxThrowSpeed: 80
+  minThrowSpeed: 5
+  maxDistance: 13

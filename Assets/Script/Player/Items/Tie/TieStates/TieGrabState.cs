@@ -1,0 +1,123 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TieGrabState : TieState
+{
+    private TieGrabAnimation animation;
+    private Vector3 direction;
+
+    private Transform grabbed = null;
+    private Vector3 offset;
+    public TieGrabState(TieStateMachine stateMachine) : base(stateMachine)
+    {
+    }
+
+    public override void Enter(State previousState)
+    {
+        this.direction = GetAttackDirection();
+        Vector3 position = stateMachine.TieController.ropeSegments[0].posNow
+            + (direction * stateMachine.PlayerAbilities.tieGrabAbility.grabLength);
+
+        ThrowGrabArea(direction);
+
+        if (grabbed != null)
+            position = grabbed.position + offset;
+
+        animation = stateMachine.TieController.TieAnimator.tieGrabAnimation;
+        animation.SetPosition(direction, position);
+        stateMachine.TieController.TieAnimator.SetAnimation(animation);
+
+        animation.OnAnimationEnd += GrabOrExit;
+        stateMachine.InputReader.OnTieAttackCanceled += ExitGrab;
+    }
+
+    public override void Exit(State nextState)
+    {
+        this.stateMachine.drawGrabRadius = false;
+
+        animation.OnAnimationEnd -= GrabOrExit;
+        stateMachine.InputReader.OnTieAttackCanceled -= ExitGrab;
+    }
+
+    public override void FixedTick()
+    {
+    }
+
+    public override void Tick()
+    {
+    }
+
+    private void ThrowGrabArea(Vector3 direction)
+    {
+        stateMachine.EnableGizmoCircles();
+
+        float subdivisions = stateMachine.PlayerAbilities.tieGrabAbility.checkSubdivisions;
+        float stepDistance = stateMachine.PlayerAbilities.tieGrabAbility.grabLength / subdivisions;
+
+        for (float i = 1; i <= subdivisions; i++)
+        {
+            float distance = i * stepDistance;
+            float objectGrabRadius = distance * Mathf.Tan(stateMachine.PlayerAbilities.tieGrabAbility.grabObjectAngle / 2);
+            float surfaceGrabRadius = distance * Mathf.Tan(stateMachine.PlayerAbilities.tieGrabAbility.grabSurfaceAngle / 2);
+
+            (grabbed, offset) = CheckAndGrab(distance, objectGrabRadius, stateMachine.PlayerAbilities.tieGrabAbility.grabbableObjectLayer);
+            if (grabbed != null) return;
+
+            (grabbed, offset) = CheckAndGrab(distance, surfaceGrabRadius, stateMachine.PlayerAbilities.tieGrabAbility.grabbableSurfaceLayer);
+            if (grabbed != null) return;
+        }
+    }
+
+    private void GrabOrExit()
+    {
+        if (grabbed != null)
+            stateMachine.SwitchState(new TieHoldGrabState(stateMachine, grabbed, offset));
+        else 
+            ExitGrab();
+    }
+
+    private void ExitGrab()
+    {
+        if (stateMachine.InputReader.isEleganceMod)
+            stateMachine.SwitchState(new TiePrepareGrabState(stateMachine));
+        else
+            stateMachine.SwitchState(new TieIdleState(stateMachine));
+    }
+
+    private (Transform grabbed, Vector3 offset) CheckAndGrab(float distance, float radius, LayerMask layer)
+    {
+        Vector2 position = stateMachine.TieController.ropeSegments[0].posNow + distance * direction;
+        stateMachine.AddGizmoCircle(position, radius, Color.blue);
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, radius, layer);
+        return GrabOntoClosest(colliders, position);
+    }
+
+    private (Transform transform, Vector3 offset) GrabOntoClosest(Collider2D[] colliders, Vector2 tipPosition)
+    {
+        if (colliders.Length <= 0) return (null, Vector3.zero);
+
+        float closestDistance = float.PositiveInfinity;
+        Transform closestTransform = null;
+        Vector3 offset = Vector3.zero;
+
+        foreach (Collider2D collider in colliders)
+        {
+            Vector3 point = collider.bounds.ClosestPoint(tipPosition);
+            float distance = Vector3.Distance(point, tipPosition);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestTransform = collider.transform;
+                offset = point - collider.transform.position;
+            }
+        }
+
+        Debug.Log("Grabbed something!");
+        Debug.Log(closestTransform);
+        Debug.Log(closestTransform.position + offset);
+        return (closestTransform, offset);
+    }
+}

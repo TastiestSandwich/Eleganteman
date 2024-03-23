@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d28feb232ef3684fa8b9d020a566bca, type: 3}
+  m_Name: TieGrabAbility
+  m_EditorClassIdentifier: 
+  unlocked: 1
+  grabbableObjectLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  grabbableSurfaceLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  grabLength: 30
+  grabSurfaceAngle: 0.2
+  grabObjectAngle: 0.5
+  checkSubdivisions: 20
+  maxDesiredLength: 10
+  minDesiredLength: 10
+  pullStrengthUp: 80
+  pullStrengthDown: 0
+  maxSwingSpeed: 30
+  swingAcceleration: 50

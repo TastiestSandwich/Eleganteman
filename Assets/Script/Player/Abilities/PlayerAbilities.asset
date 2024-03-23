@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd6835c2c16e1a4bb52231efe352a55, type: 3}
+  m_Name: PlayerAbilities
+  m_EditorClassIdentifier: 
+  hatThrowAbility: {fileID: 11400000, guid: 1c576bf22987c7b45981d66c33b580be, type: 2}
+  bowtieDashAbility: {fileID: 11400000, guid: a7e17015d8f80814c9d7835673fa4922, type: 2}
+  directionalHatThrowAbility: {fileID: 11400000, guid: a4d16988c42c356499227b487e83a225, type: 2}
+  bowtieShieldAbility: {fileID: 11400000, guid: c10a39dbfe089bd4694ee12f33c2744d, type: 2}
+  hatMegaThrowAbility: {fileID: 11400000, guid: fbc33a6703a8f9241acb2875a55cec41, type: 2}
+  hatTeleportAbility: {fileID: 11400000, guid: fffb16549b65f5e49b23d31cb1adb85b, type: 2}
+  tieAttackAbility: {fileID: 11400000, guid: 403f3c4e1280b9e4887024885d319778, type: 2}
+  tieGrabAbility: {fileID: 11400000, guid: f66e4f2274d069d4688bf43f901aa9f9, type: 2}
+  hasHat: 1
+  health: 0
+  elegance: 0
