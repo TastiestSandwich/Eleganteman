@@ -16,11 +16,13 @@ public class ChimneyAttackState : ChimneyState
         SetDesiredVelocity(GetHorizontalInputTowardsPlayer());
         FlipIfNeeded();
 
+        stateMachine.AnimationListener.OnAttackEnd += SwitchToIdleState;
         Bounce.OnHatBounce += OnBounce;
     }
 
     public override void Exit(State nextState)
     {
+        stateMachine.AnimationListener.OnAttackEnd -= SwitchToIdleState;
         Bounce.OnHatBounce -= OnBounce;
     }
 
@@ -35,12 +37,6 @@ public class ChimneyAttackState : ChimneyState
         if (!stateMachine.Controller.Ground.OnGround)
         {
             stateMachine.SwitchState(new ChimneyFallState(chimney));
-        }
-
-        // TODO attack state should end on animation end -> do animation trigger
-        if (GetDistanceToPlayer() > chimney.attackDistance)
-        {
-            stateMachine.SwitchState(new ChimneyIdleState(chimney));
         }
 
         ApplyHorizontalSpeed();

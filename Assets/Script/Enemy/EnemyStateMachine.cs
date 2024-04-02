@@ -27,6 +27,7 @@ public abstract class EnemyStateMachine : StateMachine
 
     public Animator Animator { get; private set; }
     public EnemyController Controller { get; private set; }
+    public EnemyAnimationEventListener AnimationListener { get; private set; }
 
     public PlayerController Player { get; private set; }
 
@@ -34,6 +35,7 @@ public abstract class EnemyStateMachine : StateMachine
     {
         Animator = GetComponent<Animator>();
         Controller = GetComponent<EnemyController>();
+        AnimationListener = GetComponent<EnemyAnimationEventListener>();
         Player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 }

@@ -8,4 +8,9 @@ public abstract class ChimneyState : EnemyState
     {
         this.chimney = stateMachine;
     }
+
+    public void SwitchToIdleState()
+    {
+        stateMachine.SwitchState(new ChimneyIdleState(chimney));
+    }
 }
