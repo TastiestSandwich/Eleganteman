@@ -9,8 +9,6 @@ public class ChimneyStateMachine : EnemyStateMachine
     public float attackDistance;
     public float detectionDistance;
 
-    public PlayerAnimationEventListener AnimationListener { get; private set; }
-
     public override void Start()
     {
         base.Start();

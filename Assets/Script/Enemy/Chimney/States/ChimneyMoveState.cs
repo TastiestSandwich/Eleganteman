@@ -23,6 +23,12 @@ public class ChimneyMoveState : ChimneyState
 
     public override void Tick()
     {
+        if (GetDistanceToPlayer() > chimney.detectionDistance)
+        {
+            stateMachine.SwitchState(new ChimneyIdleState(chimney));
+            return;
+        }
+
         float desiredVelocity = SetDesiredVelocity(GetHorizontalInputTowardsPlayer());
         if (desiredVelocity == 0)
         {

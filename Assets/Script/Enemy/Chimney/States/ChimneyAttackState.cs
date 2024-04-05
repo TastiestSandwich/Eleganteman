@@ -29,7 +29,6 @@ public class ChimneyAttackState : ChimneyState
     public override void Tick()
     {
         SetDesiredVelocity(0f);
-
     }
 
     public override void FixedTick()
