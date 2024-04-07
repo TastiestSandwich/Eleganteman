@@ -46,6 +46,28 @@ public class PlayerStateMachine : StateMachine
         Controller = GetComponent<PlayerController>();
         AnimationListener = GetComponent<PlayerAnimationEventListener>();
 
+        //TODO decide when health gets topped
+        GainHealth(Abilities.maxHealth);
         SwitchState(new PlayerMoveState(this));
+    }
+
+    public void GainHealth(int gain)
+    {
+        Debug.Log("Gaining health " + gain);
+        int currentHealth = Abilities.health;
+        currentHealth += gain;
+
+        if (currentHealth > Abilities.maxHealth)
+        {
+            currentHealth = Abilities.maxHealth;
+        } 
+        else if (currentHealth < 0)
+        {
+            currentHealth = 0;
+            //TODO game over
+        }
+
+        Abilities.health = currentHealth;
+        Controller.Tie.TieController.ChangeHealthIndicator(currentHealth, Abilities.maxHealth);
     }
 }

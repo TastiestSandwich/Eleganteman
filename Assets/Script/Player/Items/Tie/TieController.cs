@@ -17,6 +17,8 @@ public class TieController : MonoBehaviour
     public float drag = 0.1f;
     public float gravity = -2;
 
+    public float[] baseColor = { 0.014f, 0.78f, 0.91f };
+
     void Awake()
     {
         this.TieAnimator = GetComponent<TieAnimator>();
@@ -133,6 +135,21 @@ public class TieController : MonoBehaviour
     public Vector3 GetTipPosition()
     {
         return ropeSegments[segmentLength - 1].posNow;
+    }
+
+    public void ChangeHealthIndicator(int currentHealth, int maxHealth)
+    {
+        float percent = baseColor[1] * currentHealth / maxHealth;
+        Debug.Log("The percent is " + percent);
+        Color color = Color.HSVToRGB(baseColor[0], percent, baseColor[2]);
+        ChangeColor(color);
+    }
+
+    public void ChangeColor(Color color)
+    {
+        Debug.Log("Changing color");
+        lineRenderer.startColor = color;
+        lineRenderer.endColor = color;
     }
 }
 

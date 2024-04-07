@@ -17,7 +17,9 @@ public class PlayerAbilities : ScriptableObject
 
     public bool hasHat;
     public int health;
+    public int maxHealth;
     public int elegance;
+    public int maxElegance;
 }
 
 [System.Serializable]

@@ -27,10 +27,18 @@ public class PlayerHurtState : PlayerState
     public override void Tick()
     {
         SetDesiredVelocity();
+
+        //TODO change to event on hurt animation end
+        // Variable hurt duration depending on attack?
         animTime++;
         if(animTime > 60)
         {
-            stateMachine.SwitchState(new PlayerIdleState(stateMachine));
+            if (!stateMachine.Controller.Ground.OnGround) {
+                stateMachine.SwitchState(new PlayerFallState(stateMachine));
+            }
+            else {
+                stateMachine.SwitchState(new PlayerIdleState(stateMachine));
+            }
         }
     }
 

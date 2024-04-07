@@ -21,5 +21,7 @@ MonoBehaviour:
   tieAttackAbility: {fileID: 11400000, guid: 403f3c4e1280b9e4887024885d319778, type: 2}
   tieGrabAbility: {fileID: 11400000, guid: f66e4f2274d069d4688bf43f901aa9f9, type: 2}
   hasHat: 1
-  health: 0
+  health: 100
+  maxHealth: 100
   elegance: 0
+  maxElegance: 0

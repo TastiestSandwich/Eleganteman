@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChimneySpearAttack : Attack
 {
     public float pushBack = 5f;
+    public int damage = 10;
     public override void OnAttackHit(Vector2 direction, GameObject hit)
     {
         base.OnAttackHit(direction, hit);
@@ -18,6 +19,7 @@ public class ChimneySpearAttack : Attack
         }
 
         SetPushVelocity(direction, player);
+        player.GainHealth(-1 * damage);
         player.SwitchState(new PlayerHurtState(player));
     }
 
