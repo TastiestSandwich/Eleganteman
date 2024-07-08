@@ -1048,7 +1048,7 @@ MonoBehaviour:
     wiggleMagnitude: 0
   tieInteractAnimation:
     isLoop: 1
-    moveDuration: 0.3
+    moveDuration: 0.15
   animTime: 0
   currentFrame: 0
 --- !u!114 &2308358611290476742
