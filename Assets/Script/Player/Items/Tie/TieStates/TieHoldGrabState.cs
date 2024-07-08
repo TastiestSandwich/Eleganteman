@@ -35,13 +35,12 @@ public class TieHoldGrabState : TieState
 
     public override void FixedTick()
     {
-        // apply forces to character i guess -> this is done in character instead
         stateMachine.TieController.ropeSegLen = stateMachine.desiredLength / stateMachine.TieController.ropeSegments.Count;
     }
 
     public override void Tick()
     {
-        // check for trigger float and adjust desired tie length for forces in fixed tick -> this is done in input
+        UpdateAnimation();
         stateMachine.desiredLength = stateMachine.PlayerAbilities.tieGrabAbility.minDesiredLength +
             (stateMachine.PlayerAbilities.tieGrabAbility.maxDesiredLength * stateMachine.InputReader.EleganceValue);
     }
@@ -52,5 +51,11 @@ public class TieHoldGrabState : TieState
             stateMachine.SwitchState(new TiePrepareGrabState(stateMachine));
         else
             stateMachine.SwitchState(new TieIdleState(stateMachine));
+    }
+
+    private void UpdateAnimation()
+    {
+        animation.SetPoint(grabbed.position + offset);
+        stateMachine.TieController.TieAnimator.SetAnimation(animation);
     }
 }

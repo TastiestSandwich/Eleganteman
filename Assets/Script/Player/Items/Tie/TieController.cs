@@ -8,6 +8,7 @@ public class TieController : MonoBehaviour
     public LineRenderer outlineRend;
     public Transform targetDir;
     public TieAnimator TieAnimator;
+    public TipObjectController FaceController;
     public int Facing = 1;
 
     public List<RopeSegment> ropeSegments = new List<RopeSegment>();

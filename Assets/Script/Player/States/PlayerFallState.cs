@@ -13,6 +13,8 @@ public class PlayerFallState : PlayerState
         stateMachine.Animator.Play(FallStartHash);
 
         Bounce.OnHatBounce += OnBounce;
+        TieAttackState.OnAttackSlide += OnAttackSlide;
+        TieAttackState.OnMomentumStop += OnMomentumStop;
         stateMachine.InputReader.OnHatThrowHold += SwitchToHatThrowState;
         stateMachine.InputReader.OnBowtieDashStarted += SwitchToBowtieState;
         stateMachine.InputReader.OnBowtieShieldHold += SwitchToBowtieShieldState;
@@ -22,6 +24,8 @@ public class PlayerFallState : PlayerState
     public override void Exit(State nextState)
     {
         Bounce.OnHatBounce -= OnBounce;
+        TieAttackState.OnAttackSlide -= OnAttackSlide;
+        TieAttackState.OnMomentumStop -= OnMomentumStop;
         stateMachine.InputReader.OnHatThrowHold -= SwitchToHatThrowState;
         stateMachine.InputReader.OnBowtieDashStarted -= SwitchToBowtieState;
         stateMachine.InputReader.OnBowtieShieldHold -= SwitchToBowtieShieldState;

@@ -15,3 +15,12 @@ MonoBehaviour:
   unlocked: 1
   airMoveFriction: 5
   groundDrag: 0.1
+  slideDistance: 5
+  slideChargeDistance: 5
+  tipPercentage: 0.6
+  hitboxWidth: 0.5
+  hitboxLengthPercentage: 1.2
+  attackableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  attack: {fileID: 11400000, guid: 146ce7bbe6ab4f6409bfd769c88c159a, type: 2}

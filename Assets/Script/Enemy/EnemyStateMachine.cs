@@ -38,4 +38,6 @@ public abstract class EnemyStateMachine : StateMachine
         AnimationListener = GetComponent<EnemyAnimationEventListener>();
         Player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
+
+    public abstract void SwitchToHurtState();
 }

@@ -13,6 +13,7 @@ public class TieStateMachine : StateMachine
     public float desiredLength;
 
     public List<GizmoCircle> gizmoCircles = new();
+    public GizmoBox? gizmoBox = null;
 
     void Start()
     {
@@ -26,16 +27,23 @@ public class TieStateMachine : StateMachine
     {
         if (drawGrabRadius)
         {
-            /*
+            
             Gizmos.color = Color.blue;
             Vector3 tipPosition = TieController.ropeSegments[TieController.ropeSegments.Count - 1].posNow;
-            Gizmos.DrawSphere(tipPosition, PlayerAbilities.tieGrabAbility.grabObjectRadius);
-            */
+            Gizmos.DrawSphere(tipPosition, (tipPosition - TieController.transform.position).magnitude * Mathf.Tan(PlayerAbilities.tieGrabAbility.grabObjectAngle / 2));
+            
             foreach(GizmoCircle circle in gizmoCircles)
             {
                 Gizmos.color = circle.color;
                 Gizmos.DrawSphere(circle.position, circle.radius);
             }
+        }
+
+        if (gizmoBox.HasValue)
+        {
+            GizmoBox box = gizmoBox.Value;
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(box.position, box.size);
         }
     }
 
@@ -64,6 +72,17 @@ public class TieStateMachine : StateMachine
         public Color color;
     }
 
+    public struct GizmoBox
+    {
+        public GizmoBox(Vector3 position, Vector3 size)
+        {
+            this.position = position;
+            this.size = size;
+        }
+        public Vector3 position;
+        public Vector3 size;
+    }
+
     public void EnableGizmoCircles()
     {
         this.gizmoCircles = new();
@@ -74,5 +93,15 @@ public class TieStateMachine : StateMachine
     {
         GizmoCircle circle = new GizmoCircle(position, radius, color);
         gizmoCircles.Add(circle);
+    }
+
+    public void SetGizmoBox(Vector2 position, Vector2 size)
+    {
+        this.gizmoBox = new GizmoBox(position, size);
+    }
+
+    public void EraseGizmoBox()
+    {
+        this.gizmoBox = null;
     }
 }

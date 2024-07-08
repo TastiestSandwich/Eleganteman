@@ -1,51 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1002643654
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1002643655}
-  - component: {fileID: 1002643656}
-  m_Layer: 6
-  m_Name: SpearAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1002643655
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002643654}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1348451527}
-  m_Father: {fileID: 5421078427138861757}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1002643656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002643654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56926fad4a0b4ab479f7df6b7dce3fdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pushBack: 3
 --- !u!1 &1348451526
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +12,7 @@ GameObject:
   - component: {fileID: 1348451529}
   - component: {fileID: 1348451528}
   m_Layer: 6
-  m_Name: Hitbox
+  m_Name: SpearHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,8 +30,8 @@ Transform:
   m_LocalScale: {x: 4.163129, y: 4.369688, z: 1.946951}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1002643655}
-  m_RootOrder: 0
+  m_Father: {fileID: 5421078427138861757}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1348451529
 CapsuleCollider2D:
@@ -107,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42902f9f3f7f8a458e37e84c9c87aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 1002643656}
+  attack: {fileID: 11400000, guid: b32fbafedf0f90f4c90a38c634d19296, type: 2}
 --- !u!1 &5421078427138861750
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,8 +100,8 @@ Transform:
   m_Children:
   - {fileID: 7561315821345287370}
   - {fileID: 6639197008349788210}
-  - {fileID: 1002643655}
   - {fileID: 4330798905686188899}
+  - {fileID: 1348451527}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -274,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: 
   Velocity: {x: 0, y: 0}
-  MaxSpeed: 10
+  MaxSpeed: 15
   MaxAcceleration: 100
   MaxAirAcceleration: 100
   ShortJumpHeight: 8
@@ -413,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4879377121556591749, guid: 24be607a4aa79c944ad8e7424e0f807c, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4879377121556591749, guid: 24be607a4aa79c944ad8e7424e0f807c, type: 3}
       propertyPath: m_LocalPosition.x

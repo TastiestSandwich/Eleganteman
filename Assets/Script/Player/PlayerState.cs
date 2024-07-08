@@ -4,10 +4,14 @@ public abstract class PlayerState : State
 {
     protected readonly PlayerStateMachine stateMachine;
     protected float desiredVelocity;
+    protected Vector3 lastPosition;
+    protected Vector3 lastVelocity;
 
     protected PlayerState(PlayerStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
+        this.lastPosition = stateMachine.Controller.transform.position;
+        this.lastVelocity = stateMachine.Velocity;
     }
 
     protected float SetDesiredVelocity(float stateFriction = 0)
@@ -84,6 +88,22 @@ public abstract class PlayerState : State
     {
         ApplyTiePull();
         stateMachine.Controller.Move(stateMachine.Velocity);
+        // ApplyMomentumLoss(stateMachine.MomentumLossThreshold);
+    }
+
+    //TODO FIX THIS ITS BUGGY AND FEELS BAD (trying to stop accumulated momentum when hitting surfaces that force you to stop)
+    private void ApplyMomentumLoss(float momentumLossThreshold)
+    {
+        Vector3 currentPosition = stateMachine.Controller.transform.position;
+        Vector3 displacement = currentPosition - lastPosition;
+
+        bool shouldStopVerticalMomentum = Mathf.Abs(displacement.y) < Mathf.Abs(lastVelocity.y) * Time.fixedDeltaTime * momentumLossThreshold;
+        bool shouldStopHorizontalMomentum = Mathf.Abs(displacement.x) < Mathf.Abs(lastVelocity.x) * Time.fixedDeltaTime * momentumLossThreshold;
+        if (shouldStopVerticalMomentum) stateMachine.Velocity.Set(stateMachine.Velocity.x, 0);
+        if (shouldStopHorizontalMomentum) stateMachine.Velocity.Set(0, stateMachine.Velocity.y);
+
+        lastPosition = currentPosition;
+        lastVelocity = stateMachine.Velocity;
     }
 
     protected float GetJumpSpeed(float JumpHeight)
@@ -100,6 +120,19 @@ public abstract class PlayerState : State
         Vector2 bounceVelocity = direction * bounceSpeed;
 
         stateMachine.Velocity = bounceVelocity;
+    }
+
+    public void OnAttackSlide(Vector2 direction, float slideDistance)
+    {
+        float slideSpeed = Mathf.Sqrt(-2f * stateMachine.Gravity * slideDistance);
+        Vector2 slideVelocity = direction * slideSpeed;
+
+        stateMachine.Velocity = slideVelocity;
+    }
+
+    public void OnMomentumStop()
+    {
+        stateMachine.Velocity = Vector2.zero;
     }
 
     public void SwitchToJumpstartState()

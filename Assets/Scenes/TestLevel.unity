@@ -479,6 +479,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 528346594, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: tieInteractAnimation.moveDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1764758389354500135, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -526,38 +530,6 @@ PrefabInstance:
     - target: {fileID: 3498318767296733230, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
       propertyPath: m_Name
       value: Eleganteman
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781462870060458116, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: m_Parameters.colorGradient.atime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781462870060458116, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: m_Parameters.colorGradient.ctime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781462870060458116, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.b
-      value: 0.19607845
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781462870060458116, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.g
-      value: 0.2509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781462870060458116, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.r
-      value: 0.9058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781462870060458116, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.b
-      value: 0.19607845
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781462870060458116, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.g
-      value: 0.2509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781462870060458116, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.r
-      value: 0.9058824
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
@@ -3335,7 +3307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2463739626178415426, guid: cc02e6e229ad2ad45bdcf1ea17f0f81e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 2463739626178415426, guid: cc02e6e229ad2ad45bdcf1ea17f0f81e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3439,10 +3411,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1002643656, guid: 0e22c5ae8fefbbd40baa550194d9aca8, type: 3}
-      propertyPath: damage
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 5421078427138861750, guid: 0e22c5ae8fefbbd40baa550194d9aca8, type: 3}
       propertyPath: m_Name
       value: Chimney

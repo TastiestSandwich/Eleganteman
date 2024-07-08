@@ -25,6 +25,8 @@ public class PlayerStateMachine : StateMachine
     public float JumpStartFriction = 10;
     public float LandFriction = 10;
 
+    public float MomentumLossThreshold = 0.1f;
+
     public bool hasHat = true;
 
     public Transform MainCamera { get; private set; }

@@ -16,6 +16,8 @@ public class PlayerJumpstartState : PlayerState
         stateMachine.InputReader.OnBowtieDashStarted += SwitchToBowtieState;
         stateMachine.InputReader.OnHatTeleportStarted += ExitAndTeleportToHat;
         Bounce.OnHatBounce += OnBounce;
+        // TieAttackState.OnAttackSlide += OnAttackSlide;
+        TieAttackState.OnMomentumStop += OnMomentumStop;
     }
 
     public override void Exit(State previousState)
@@ -25,6 +27,8 @@ public class PlayerJumpstartState : PlayerState
         stateMachine.InputReader.OnBowtieDashStarted -= SwitchToBowtieState;
         stateMachine.InputReader.OnHatTeleportStarted -= ExitAndTeleportToHat;
         Bounce.OnHatBounce -= OnBounce;
+        // TieAttackState.OnAttackSlide -= OnAttackSlide;
+        TieAttackState.OnMomentumStop -= OnMomentumStop;
     }
 
     public override void Tick()

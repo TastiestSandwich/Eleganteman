@@ -15,4 +15,9 @@ public class ChimneyStateMachine : EnemyStateMachine
 
         SwitchState(new ChimneyIdleState(this));
     }
+
+    public override void SwitchToHurtState()
+    {
+        SwitchState(new ChimneyHurtState(this));
+    }
 }

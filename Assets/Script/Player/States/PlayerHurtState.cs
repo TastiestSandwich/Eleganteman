@@ -16,11 +16,15 @@ public class PlayerHurtState : PlayerState
         animTime = 0;
 
         Bounce.OnHatBounce += OnBounce;
+        // TieAttackState.OnAttackSlide += OnAttackSlide;
+        TieAttackState.OnMomentumStop += OnMomentumStop;
     }
 
     public override void Exit(State nextState)
     {
         Bounce.OnHatBounce -= OnBounce;
+        // TieAttackState.OnAttackSlide -= OnAttackSlide;
+        TieAttackState.OnMomentumStop -= OnMomentumStop;
         stateMachine.Controller.SetHurtbox(true);
     }
 

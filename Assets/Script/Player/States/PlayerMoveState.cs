@@ -20,6 +20,8 @@ public class PlayerMoveState : PlayerState
         stateMachine.InputReader.OnBowtieShieldHold += SwitchToBowtieShieldState;
         stateMachine.InputReader.OnHatTeleportStarted += TeleportToHat;
         Bounce.OnHatBounce += OnBounce;
+        // TieAttackState.OnAttackSlide += OnAttackSlide;
+        TieAttackState.OnMomentumStop += OnMomentumStop;
     }
 
     public override void Exit(State nextState)
@@ -37,6 +39,8 @@ public class PlayerMoveState : PlayerState
         stateMachine.InputReader.OnBowtieShieldHold -= SwitchToBowtieShieldState;
         stateMachine.InputReader.OnHatTeleportStarted -= TeleportToHat;
         Bounce.OnHatBounce -= OnBounce;
+        // TieAttackState.OnAttackSlide -= OnAttackSlide;
+        TieAttackState.OnMomentumStop -= OnMomentumStop;
     }
 
     public override void Tick()

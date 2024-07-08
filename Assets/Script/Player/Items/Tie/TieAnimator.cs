@@ -10,6 +10,7 @@ public class TieAnimator : MonoBehaviour
     public TieGrabAnimation tieGrabAnimation = new();
     public TieHoldGrabAnimation tieHoldGrabAnimation = new();
     public TiePointMenuAnimation tiePointMenuAnimation = new();
+    public TieInteractAnimation tieInteractAnimation = new();
 
     public float animTime = 0;
     public TieAnimation currentAnimation = null;

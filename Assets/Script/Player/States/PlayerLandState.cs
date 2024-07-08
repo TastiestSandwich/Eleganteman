@@ -24,6 +24,8 @@ public class PlayerLandState : PlayerState
         stateMachine.AnimationListener.OnLandEnd += ExitLand;
         stateMachine.InputReader.OnHatTeleportStarted += TeleportToHat;
         Bounce.OnHatBounce += OnBounce;
+        // TieAttackState.OnAttackSlide += OnAttackSlide;
+        TieAttackState.OnMomentumStop += OnMomentumStop;
 
         stateMachine.Abilities.bowtieDashAbility.timesBowtieJumped = 0;
     }
@@ -36,6 +38,8 @@ public class PlayerLandState : PlayerState
         stateMachine.AnimationListener.OnLandEnd -= ExitLand;
         stateMachine.InputReader.OnHatTeleportStarted -= TeleportToHat;
         Bounce.OnHatBounce -= OnBounce;
+        // TieAttackState.OnAttackSlide -= OnAttackSlide;
+        TieAttackState.OnMomentumStop -= OnMomentumStop;
     }
 
     public override void Tick()
