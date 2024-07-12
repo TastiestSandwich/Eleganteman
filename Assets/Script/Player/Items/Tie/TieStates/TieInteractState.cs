@@ -27,7 +27,7 @@ public class TieInteractState : TieState
         animation.SetPosition(stateMachine.transform, interactable);
         stateMachine.TieController.TieAnimator.SetAnimation(animation);
 
-        stateMachine.TieController.ropeSegLen *= tieLengthExtension;
+        stateMachine.TieController.SetFixedTieLength(stateMachine.TieController.defaultRopeSegLen * tieLengthExtension);
 
         originalTieCurve = stateMachine.TieController.lineRenderer.widthCurve;
         stateMachine.TieController.lineRenderer.widthCurve = createTieInteractionCurve(originalTieCurve, tieHeadWidthMultiplier);
@@ -47,6 +47,8 @@ public class TieInteractState : TieState
 
         stateMachine.TieController.lineRenderer.widthCurve = originalTieCurve;
         stateMachine.TieController.outlineRend.widthCurve = originalOutlineCurve;
+
+        stateMachine.TieController.DisableFixedLength();
 
         stateMachine.InputReader.OnTieAttackStarted -= SwitchToAttackState;
         stateMachine.InputReader.OnEleganceModHold -= SwitchToPrepareGrabState;

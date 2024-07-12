@@ -27,7 +27,7 @@ public class TieSendTipFrame : TieAnimationFrame
         OnStart?.Invoke();
     }
 
-    public override List<RopeSegment> SetConstraints(List<RopeSegment> segments, float animTime)
+    public override List<RopeSegment> SetConstraints(List<RopeSegment> segments, float ropeSegLen, float animTime)
     {
         int tipIndex = segments.Count - 1;
         RopeSegment tipSegment = segments[tipIndex];
@@ -35,7 +35,7 @@ public class TieSendTipFrame : TieAnimationFrame
         if (startingPosition == null)
             startingPosition = tipSegment.posNow;
 
-        Vector3 targetPosition = segments[0].posNow + (direction * distance);
+        Vector3 targetPosition = segments[0].posNow + (direction * distance * ropeSegLen);
         tipSegment.posNow = Vector3.Lerp(startingPosition.GetValueOrDefault(), targetPosition, (animTime / duration));
         segments[tipIndex] = tipSegment;
 

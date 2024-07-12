@@ -8,7 +8,7 @@ public class TieStateMachine : StateMachine
     public InputReader InputReader { get; private set; }
     public PlayerAbilities PlayerAbilities;
 
-    public bool drawGrabRadius = false;
+    public bool drawGrabRadius = true;
     public Grabbed? grabbed = null;
     public float desiredLength;
 

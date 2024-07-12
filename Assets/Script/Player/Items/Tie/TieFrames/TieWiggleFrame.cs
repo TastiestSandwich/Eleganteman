@@ -26,7 +26,7 @@ public class TieWiggleFrame : TieAnimationFrame
         // nothing
     }
 
-    public override List<RopeSegment> SetConstraints(List<RopeSegment> segments, float animTime)
+    public override List<RopeSegment> SetConstraints(List<RopeSegment> segments, float ropeSegLen, float animTime)
     {
         int wiggleIndex = (int)(segments.Count * anchorPercent);
         RopeSegment wiggleSegment = segments[wiggleIndex];

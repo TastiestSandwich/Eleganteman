@@ -16,13 +16,13 @@ public class TieAnimator : MonoBehaviour
     public TieAnimation currentAnimation = null;
     public int currentFrame = 0;
 
-    public List<RopeSegment> SetAnimationConstraints(List<RopeSegment> segments)
+    public List<RopeSegment> SetAnimationConstraints(List<RopeSegment> segments, float ropeSegLen)
     {
         if (currentAnimation == null) return segments;
         if (currentFrame >= currentAnimation.frames.Length) return segments;
 
         TieAnimationFrame frame = currentAnimation.frames[currentFrame];
-        return frame.SetConstraints(segments, animTime);
+        return frame.SetConstraints(segments, ropeSegLen, animTime);
     }
 
     public void AdvanceAnimTime(float deltaTime)

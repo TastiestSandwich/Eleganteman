@@ -27,7 +27,7 @@ public abstract class TieAnimationFrame
         this.duration = duration;
     }
 
-    public abstract List<RopeSegment> SetConstraints(List<RopeSegment> segments, float animTime);
+    public abstract List<RopeSegment> SetConstraints(List<RopeSegment> segments, float ropeSegLen, float animTime);
     public abstract void OnFrameStart();
     public abstract void OnFrameEnd();
 }

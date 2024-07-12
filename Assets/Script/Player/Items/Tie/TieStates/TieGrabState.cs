@@ -15,11 +15,13 @@ public class TieGrabState : TieState
 
     public override void Enter(State previousState)
     {
+        stateMachine.TieController.SetFixedTieLength(stateMachine.TieController.defaultRopeSegLen);
         this.direction = GetAttackDirection();
+        float distance = stateMachine.PlayerAbilities.tieGrabAbility.grabLength * stateMachine.TieController.ropeSegLen;
         Vector3 position = stateMachine.TieController.ropeSegments[0].posNow
-            + (direction * stateMachine.PlayerAbilities.tieGrabAbility.grabLength);
+            + (direction * distance);
 
-        ThrowGrabArea(direction);
+        ThrowGrabArea(distance);
 
         if (grabbed != null)
             position = grabbed.position + offset;
@@ -48,23 +50,23 @@ public class TieGrabState : TieState
     {
     }
 
-    private void ThrowGrabArea(Vector3 direction)
+    private void ThrowGrabArea(float distance)
     {
         stateMachine.EnableGizmoCircles();
 
         float subdivisions = stateMachine.PlayerAbilities.tieGrabAbility.checkSubdivisions;
-        float stepDistance = stateMachine.PlayerAbilities.tieGrabAbility.grabLength / subdivisions;
+        float stepDistance = distance / subdivisions;
 
         for (float i = 1; i <= subdivisions; i++)
         {
-            float distance = i * stepDistance;
-            float objectGrabRadius = distance * Mathf.Tan(stateMachine.PlayerAbilities.tieGrabAbility.grabObjectAngle / 2);
-            float surfaceGrabRadius = distance * Mathf.Tan(stateMachine.PlayerAbilities.tieGrabAbility.grabSurfaceAngle / 2);
+            float dist = i * stepDistance;
+            float objectGrabRadius = dist * Mathf.Tan(stateMachine.PlayerAbilities.tieGrabAbility.grabObjectAngle / 2);
+            float surfaceGrabRadius = dist * Mathf.Tan(stateMachine.PlayerAbilities.tieGrabAbility.grabSurfaceAngle / 2);
 
-            (grabbed, offset) = CheckAndGrab(distance, objectGrabRadius, stateMachine.PlayerAbilities.tieGrabAbility.grabbableObjectLayer);
+            (grabbed, offset) = CheckAndGrab(dist, objectGrabRadius, stateMachine.PlayerAbilities.tieGrabAbility.grabbableObjectLayer);
             if (grabbed != null) return;
 
-            (grabbed, offset) = CheckAndGrab(distance, surfaceGrabRadius, stateMachine.PlayerAbilities.tieGrabAbility.grabbableSurfaceLayer);
+            (grabbed, offset) = CheckAndGrab(dist, surfaceGrabRadius, stateMachine.PlayerAbilities.tieGrabAbility.grabbableSurfaceLayer);
             if (grabbed != null) return;
         }
     }
@@ -79,6 +81,8 @@ public class TieGrabState : TieState
 
     private void ExitGrab()
     {
+        stateMachine.TieController.DisableFixedLength();
+
         if (stateMachine.InputReader.isEleganceMod)
             stateMachine.SwitchState(new TiePrepareGrabState(stateMachine));
         else

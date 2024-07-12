@@ -15,7 +15,7 @@ MonoBehaviour:
   unlocked: 1
   airMoveFriction: 5
   groundDrag: 0.1
-  slideDistance: 5
+  slideDistance: 20
   slideChargeDistance: 5
   tipPercentage: 0.6
   hitboxWidth: 0.5

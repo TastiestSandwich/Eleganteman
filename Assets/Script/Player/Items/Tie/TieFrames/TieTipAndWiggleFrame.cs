@@ -32,7 +32,7 @@ public class TieTipAndWiggleFrame : TieAnimationFrame
         // todo
     }
 
-    public override List<RopeSegment> SetConstraints(List<RopeSegment> segments, float animTime)
+    public override List<RopeSegment> SetConstraints(List<RopeSegment> segments, float ropeSegLen, float animTime)
     {
         int tipIndex = segments.Count - 1;
         int wiggleIndex = (int)(segments.Count * anchorPercent);
@@ -42,7 +42,7 @@ public class TieTipAndWiggleFrame : TieAnimationFrame
         if (startingPosition == null)
             startingPosition = tipSegment.posNow;
 
-        Vector3 targetPosition = segments[0].posNow + (direction * distance);
+        Vector3 targetPosition = segments[0].posNow + (direction * distance * ropeSegLen);
         tipSegment.posNow = Vector3.Lerp(startingPosition.GetValueOrDefault(), targetPosition, (animTime / duration));
 
         Vector3 wiggleDirection = Vector2.Perpendicular(segments[0].posNow - tipSegment.posNow).normalized;

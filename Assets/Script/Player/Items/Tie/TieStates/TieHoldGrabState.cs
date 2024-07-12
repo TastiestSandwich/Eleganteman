@@ -28,14 +28,15 @@ public class TieHoldGrabState : TieState
     public override void Exit(State nextState)
     {
         stateMachine.grabbed = null;
-        stateMachine.TieController.ropeSegLen = stateMachine.TieController.defaultRopeSegLen;
+        stateMachine.TieController.DisableFixedLength();
 
         stateMachine.InputReader.OnTieAttackCanceled -= ExitHoldGrab;
     }
 
     public override void FixedTick()
     {
-        stateMachine.TieController.ropeSegLen = stateMachine.desiredLength / stateMachine.TieController.ropeSegments.Count;
+        float length = stateMachine.desiredLength / stateMachine.TieController.ropeSegments.Count;
+        stateMachine.TieController.SetFixedTieLength(length);
     }
 
     public override void Tick()

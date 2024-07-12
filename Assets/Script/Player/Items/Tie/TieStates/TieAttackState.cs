@@ -45,7 +45,11 @@ public class TieAttackState : TieState
     private void FinishAttack()
     {
         CheckAttackHitbox(stateMachine.PlayerAbilities.tieAttackAbility.attackableLayer);
-        OnAttackSlide?.Invoke(direction, stateMachine.PlayerAbilities.tieAttackAbility.slideDistance);
+        if (stateMachine.TieController.isAtMaxCooldown())
+        {
+            OnAttackSlide?.Invoke(direction, stateMachine.PlayerAbilities.tieAttackAbility.slideDistance);
+            stateMachine.TieController.ConsumeCooldown();
+        }
 
         stateMachine.SwitchState(new TieIdleState(stateMachine));
     }

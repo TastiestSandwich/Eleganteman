@@ -19,13 +19,13 @@ MonoBehaviour:
   grabbableSurfaceLayer:
     serializedVersion: 2
     m_Bits: 8
-  grabLength: 30
+  grabLength: 300
   grabSurfaceAngle: 0.2
   grabObjectAngle: 0.5
   checkSubdivisions: 20
   maxDesiredLength: 10
   minDesiredLength: 10
-  pullStrengthUp: 80
+  pullStrengthUp: 50
   pullStrengthDown: 0
   maxSwingSpeed: 30
   swingAcceleration: 50

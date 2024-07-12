@@ -479,9 +479,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 528346593, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: ropeSegLen
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 528346593, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: segmentLength
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 528346593, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: defaultRopeSegLen
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 528346593, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: tieCooldownRecovery
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 528346594, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
-      propertyPath: tieInteractAnimation.moveDuration
-      value: 0.2
+      propertyPath: tieHoldGrabAnimation.duration
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 528346594, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: tieGrabAnimation.chargeDistance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 528346594, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: tieAttackAnimation.attackDistance
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 528346594, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: tieAttackAnimation.chargeDistance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 528346594, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
+      propertyPath: tiePrepareGrabAnimation.chargeDistance
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1764758389354500135, guid: 0349ecf621fe06f4f90b696852b1ed70, type: 3}
       propertyPath: m_RootOrder

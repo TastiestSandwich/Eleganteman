@@ -24,7 +24,7 @@ public class TieMiddleHoldTipFrame : TieAnimationFrame
     {
     }
 
-    public override List<RopeSegment> SetConstraints(List<RopeSegment> segments, float animTime)
+    public override List<RopeSegment> SetConstraints(List<RopeSegment> segments, float ropeSegLen, float animTime)
     {
         int tipIndex = segments.Count - 1;
         RopeSegment tipSegment = segments[tipIndex];

@@ -13,10 +13,16 @@ public class TieController : MonoBehaviour
 
     public List<RopeSegment> ropeSegments = new List<RopeSegment>();
     public float ropeSegLen = 0.1f;
-    public float defaultRopeSegLen = 0.125f;
+    public float defaultRopeSegLen = 0.1f;
     public int segmentLength = 10;
     public float drag = 0.1f;
     public float gravity = -2;
+
+    //TODO have a boolean for length calculation mode -> either fixed or cooldown based.
+    private bool isFixedLengthMode = false;
+    public float tieCooldownPercentage = 1;
+    public float tieCooldownRecovery = 0.01f;
+    public float maxCooldownPercentage = 1;
 
     public float[] baseColor = { 0.014f, 0.78f, 0.91f };
 
@@ -41,6 +47,8 @@ public class TieController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        this.RecoverCooldown();
+        this.CalculateRopeLength();
         this.Simulate();
     }
 
@@ -74,7 +82,7 @@ public class TieController : MonoBehaviour
         this.ropeSegments[0] = firstSegment;
 
         //Animation Constraints
-        this.ropeSegments = TieAnimator.SetAnimationConstraints(this.ropeSegments);
+        this.ropeSegments = TieAnimator.SetAnimationConstraints(this.ropeSegments, this.ropeSegLen);
 
         for (int i = 0; i < this.segmentLength - 1; i++)
         {
@@ -151,6 +159,44 @@ public class TieController : MonoBehaviour
         Debug.Log("Changing color");
         lineRenderer.startColor = color;
         lineRenderer.endColor = color;
+    }
+
+    private void CalculateRopeLength()
+    {
+        if(!this.isFixedLengthMode)
+        {
+            this.ropeSegLen = defaultRopeSegLen * tieCooldownPercentage;
+        }
+    }
+
+    public void SetFixedTieLength(float tieLength)
+    {
+        this.isFixedLengthMode = true;
+        this.ropeSegLen = tieLength;
+    }
+
+    public void DisableFixedLength()
+    {
+        this.isFixedLengthMode = false;
+    }
+
+    private void RecoverCooldown()
+    {
+        this.tieCooldownPercentage += tieCooldownRecovery * Time.fixedDeltaTime;
+        if (tieCooldownPercentage >= maxCooldownPercentage)
+        {
+            this.tieCooldownPercentage = maxCooldownPercentage;
+        }
+    }
+
+    public void ConsumeCooldown()
+    {
+        this.tieCooldownPercentage = 0;
+    }
+
+    public bool isAtMaxCooldown()
+    {
+        return this.tieCooldownPercentage >= maxCooldownPercentage;
     }
 }
 
