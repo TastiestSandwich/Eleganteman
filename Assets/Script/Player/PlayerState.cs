@@ -127,7 +127,7 @@ public abstract class PlayerState : State
         float slideSpeed = Mathf.Sqrt(-2f * stateMachine.Gravity * slideDistance);
         Vector2 slideVelocity = direction * slideSpeed;
 
-        stateMachine.Velocity = slideVelocity;
+        stateMachine.Velocity = new Vector2(stateMachine.Velocity.x + slideVelocity.x, slideVelocity.y);
     }
 
     public void OnMomentumStop()
